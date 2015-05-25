@@ -1,6 +1,5 @@
-# [ngBoilerplate](http://joshdmiller.github.com/ng-boilerplate) [![Build Status](https://api.travis-ci.org/ngbp/ngbp.png?branch=v0.3.2-release)](https://travis-ci.org/ngbp/ngbp)
-
-An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
+# [ngMaterial-bp](https://github.com/aitorcarrera/ngbp-material) 
+ngMaterial Boilerplate is a kickstarter Angularjs / angular Material project based on [ng-boilerplate](http://joshdmiller.github.com/ng-boilerplate)
 
 ***
 
@@ -9,27 +8,27 @@ An opinionated kickstarter for [AngularJS](http://angularjs.org) projects.
 Install Node.js and then:
 
 ```sh
-$ git clone git://github.com/joshdmiller/ng-boilerplate
-$ cd ng-boilerplate
+$ git clone https://github.com/aitorcarrera/ngbp-material.git
+$ cd ngbp-material
 $ sudo npm -g install grunt-cli karma bower
 $ npm install
 $ bower install
 $ grunt watch
 ```
 
-Finally, open `file:///path/to/ng-boilerplate/build/index.html` in your browser.
+Finally, open `file:///path/to/ngbp-material/build/index.html` in your browser.
 
 Happy hacking!
 
 ## Purpose
 
-`ngBoilerplate` is designed to make life easy by providing a basic framework
+`ngMaterial-bp` is designed to make life easy by providing a basic framework
 with which to kickstart AngularJS projects. It contains a best-practice
 directory structure to ensure code reusability and maximum scalability.
-ngBoilerplate also comes prepackaged with the most popular design frameworks
-around: [Twitter Bootstrap](http://getbootstrap.com),
+ngMaterial-bp also comes prepackaged with the most popular design frameworks
+around: 
 [Angular UI](http://angular-ui.github.io),
-[Angular Bootstrap](http://angular-ui.github.io/bootstrap),
+[Angular Material](https://github.com/angular/material),
 [Font Awesome](http://fortawesome.github.com/Font-Awesome), and
 [LESS](http://lesscss.org). Lastly, it contains a sophisticated
 [Grunt](http://gruntjs.org)-based build system to ensure maximum productivity.
@@ -37,8 +36,8 @@ All you have to do is clone it and start coding!
 
 ## Philosophy
 
-The principal goal of `ngBoilerplate` is to set projects up for long-term
-success.  So `ngBoilerplate` tries to follow best practices everywhere it can.
+The principal goal of `ngMaterial-bp` is to set projects up for long-term
+success.  So `ngMaterial-bp` tries to follow best practices everywhere it can.
 These are:
 
 - Properly orchestrated modules to encourage drag-and-drop component re-use.
@@ -56,9 +55,9 @@ These are:
 - Well-documented, to show new developers *why* things are set up the way they
   are.
 - It should be responsive to evidence. Community feedback is therefore crucial
-  to the success of `ngBoilerplate`.
+  to the success of `ngMaterial-bp`.
 
-But `ngBoilerplate` is not an example of an AngularJS app: this is a
+But `ngMaterial-bp` is not an example of an AngularJS app: this is a
 kickstarter. If you're looking for an example of what a complete, non-trivial
 AngularJS app that does something real looks like, complete with a REST backend
 and authentication and authorization, then take a look at
@@ -72,7 +71,7 @@ that - and does it well.
 At a high level, the structure looks roughly like this:
 
 ```
-ng-boilerplate/
+ngbp-material/
   |- grunt-tasks/
   |- karma/
   |- src/
@@ -84,10 +83,7 @@ ng-boilerplate/
   |  |  |- <reusable code>
   |  |- less/
   |  |  |- main.less
-  |- vendor/
-  |  |- angular-bootstrap/
-  |  |- bootstrap/
-  |  |- placeholders/
+  |- vendor
   |- .bowerrc
   |- bower.json
   |- build.config.js
@@ -123,7 +119,7 @@ learn more.
 ### Detailed Installation
 
 This section provides a little more detailed understanding of what goes into
-getting `ngBoilerplate` up and running. Though `ngBoilerplate` is really simple
+getting `ngMaterial-bp` up and running. Though `ngMaterial-bp` is really simple
 to use, it might help to have an understanding of the tools involved here, like
 Node.js and Grunt and Bower. If you're completely new to highly organized,
 modern JavaScript development, take a few short minutes to read [this overview
@@ -131,7 +127,7 @@ of the tools](tools.md) before continuing with this section.
 
 Okay, ready to go? Here it is:
 
-`ngBoilerplate` uses [Grunt](http://gruntjs.org) as its build system, so
+`ngMaterial-bp` uses [Grunt](http://gruntjs.org) as its build system, so
 [Node.js](http://nodejs.org) is required. Also, Grunt by default no longer comes
 with a command-line utility and Karma and Bower must end up in your global path
 for the build system to find it, so they must be installed independently. Once
@@ -149,7 +145,7 @@ from GitHub, or merge the branch into your existing repository. Assuming you're
 starting from scratch, simply clone this repository using git:
 
 ```sh
-$ git clone git://github.com/joshdmiller/ng-boilerplate my-project-name
+$ git clone https://github.com/aitorcarrera/ngbp-material my-project-name
 $ cd my-project-name
 ```
 
@@ -163,8 +159,7 @@ This will read the `dependencies` (empty by default) and the `devDependencies`
 (which contains our build requirements) from `package.json` and install
 everything needed into a folder called `node_modules/`.
 
-There are many Bower packages used by `ngBoilerplate`, like Twitter Bootstrap
-and Angular UI, which are listed in `bower.js`. To install them into the
+There are many Bower packages used by `ngMaterial-bp`, like Angular Material, which are listed in `bower.js`. To install them into the
 `vendor/` directory, simply run:
 
 ```sh
@@ -184,7 +179,7 @@ application (or we download it from a different computer), we can simply run the
 `bower install` command as above and all our dependencies will be installed for
 us. Neat!
 
-Technically, `ngBoilerplate` is now ready to go.
+Technically, `ngMaterial-bp` is now ready to go.
 
 However, prior to hacking on your application, you will want to modify the
 `package.json` file to contain your project's information. Do not remove any
@@ -224,7 +219,7 @@ $ grunt compile
 This will concatenate and minify your sources and place them by default into the
 `bin/` directory. There will only be three files: `index.html`,
 `your-app-name.js`, and `your-app-name.css`. All of the vendor dependencies like
-Bootstrap styles and AngularJS itself have been added to them for super-easy
+ AngularJS itself have been added to them for super-easy
 deploying. If you use any assets (`src/assets/`) then they will be copied to
 `bin/` as is.
 
@@ -240,7 +235,7 @@ $ grunt
 The best way to learn about the build system is by familiarizing yourself with
 Grunt and then reading through the heavily documented build script,
 `Gruntfile.js`. But you don't need to do that to be very productive with
-`ngBoilerplate`. What follows in this section is a quick introduction to the
+`ngMaterial-bp`. What follows in this section is a quick introduction to the
 tasks provided and should be plenty to get you started.
 
 The driver of the process is the `delta` multi-task, which watches for file
@@ -314,7 +309,7 @@ expected, open the `bin/index.html` file in your browser. Voila!
 
 ### Live Reload!
 
-`ngBoilerplate` also includes [Live Reload](http://livereload.com/), so you no
+`ngMaterial-bp` also includes [Live Reload](http://livereload.com/), so you no
 longer have to refresh your page after making changes! You need a Live Reload
 browser plugin for this:
 
@@ -324,7 +319,7 @@ browser plugin for this:
 - Internet Explorer - Surely you jest.
 
 Note that if you're using the Chrome version with `file://` URLs (as is the
-default with `ngBoilerplate`) you need to tell Live Reload to allow it. Go to
+default with `ngMaterial-bp`) you need to tell Live Reload to allow it. Go to
 `Menu -> Tools -> Extensions` and check the "Allow access to file URLs" box next
 to the Live Reload plugin.
 
@@ -352,18 +347,13 @@ without renaming a bunch of files and methods or deleting spare parts. What I
 have works for a first release, but I just think there is a little too much here
 right now.
 
-I'd also like to see a simple generator. Nothing like Yeoman, as there already
-is one of those, but just something that allows the user to say "I want
-Bootstrap but not Font Awesome and my app is called 'coolApp'. Gimme." Perhaps a
-custom download builder like UI Bootstrap has. Like that. Then again, perhaps
-some Yeoman generators wouldn't be out of line. I don't know. What do you think?
 
 Naturally, I am open to all manner of ideas and suggestions. See the
 "Contributing" section below.
 
 ### To Do
 
-See the [issues list](http://github.com/joshdmiller/ng-boilerplate/issues). And
+See the [issues list](https://github.com/aitorcarrera/ngbp-material/issues). And
 feel free to submit your own!
 
 ### Contributing
@@ -375,5 +365,5 @@ through all the usual channels or you can open an issue on the GitHub page. If
 you're feeling ambitious, you can even submit a pull request - how thoughtful
 of you!
 
-So join the team! We're good people.
+
 

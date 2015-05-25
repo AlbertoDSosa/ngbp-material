@@ -595,9 +595,13 @@ module.exports = function ( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
-    var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-      return file.replace( dirRE, '' );
-    });
+    cssFile = grunt.config('build_dir') +'/assets/'+ grunt.config('pkg.name') + '-' + grunt.config('pkg.version') +'.css';
+    cssFile = cssFile.replace(dirRE, '' );
+
+   // var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+   //   return file.replace( dirRE, '' );
+   // });
+    var cssFiles = [cssFile];
 
     grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
       process: function ( contents, path ) {
