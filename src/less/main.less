@@ -31,14 +31,41 @@
   src: local('Roboto Regular'), local('Roboto-Regular'), url(fonts/Roboto-Regular.woff) format('woff');
 }
 
-
-
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using. 
  *
  * TODO: In a later version of this boilerplate, I'd like to automate this.
  */
+
+ /**
+ * Icon Fonts
+ */
+
+ @font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(MaterialIcons-Regular.eot);
+    src: local('Material Icons'),local('MaterialIcons-Regular'),url(MaterialIcons-Regular.woff2) format('woff2'),url(MaterialIcons-Regular.woff) format('woff'),url(MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: 'liga';
+}
 
 @import '../app/home/home.less';
 

@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html ng-app="ngMaterial-bp" ng-controller="AppCtrl">
+<html ng-app="ngMaterial-bp">
   <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1">
     <title ng-bind="pageTitle"></title>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+
     <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
 
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
@@ -11,16 +14,26 @@
 
 
   </head>
-  <body>
-  <md-toolbar md-scroll-shrink="" class="md-whiteframe-glow-z2 md-default-theme">
-      <h1 class="md-toolbar-tools">Angular-Material Boilerplate</h1>
+  <body layout="column" ng-controller="AppCtrl">
+  <md-toolbar  layout="row">
+    <div class="md-toolbar-tools">
+      <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+        <md-icon aria-label="Menu" class="material-icons">menu</md-icon>
+      </md-button>
+      <h1 >Angular-Material Boilerplate</h1>
+    </div>
   </md-toolbar>
-
-
-    <md-content md-scroll-y="" layout-padding="" class="ng-scope md-default-theme" ui-view="main"></md-content>
-
-    <footer class="footer">
-
-    </footer>
+  <div layout="row" flex>
+        <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+          <img src="assets/img/angular-js.png" width="300">
+          <md-button>Home</md-button>
+          <md-button>What is it?</md-button>
+          <md-button>Documentation</md-button>
+          <md-button>Git Hub</md-button>
+        </md-sidenav>
+        <div layout="column" flex id="content" ui-view="main">
+          
+        </div>
+    </div>
   </body>
 </html>
