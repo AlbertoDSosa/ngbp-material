@@ -9,6 +9,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-less');
@@ -87,10 +88,10 @@ module.exports = function ( grunt ) {
     /**
      * The directories to delete when `grunt clean` is executed.
      */
-    clean: [ 
-      '<%= build_dir %>', 
-      '<%= compile_dir %>'
-    ],
+    clean: {
+      build: '<%= build_dir %>',
+      compile: '<%= compile_dir %>'
+    },
 
     /**
      * The `copy` task just copies files from A to B. We use it here to copy
@@ -139,6 +140,16 @@ module.exports = function ( grunt ) {
           }
         ]
       },
+      build_vendorcss: {
+        files: [
+          {
+            src: [ '<%= vendor_files.css %>' ],
+            dest: '<%= build_dir %>/',
+            cwd: '.',
+            expand: true
+          }
+        ]
+      },
       compile_assets: {
         files: [
           {
@@ -152,19 +163,31 @@ module.exports = function ( grunt ) {
     },
 
     /**
+     * `grunt cssmin` Minify the sources!
+     */
+
+    cssmin: {
+      target: {
+        files: {
+          '<%= concat.compile_css.dest %>': '<%= concat.compile_css.dest %>'
+        }
+      }
+    },
+
+    /**
      * `grunt concat` concatenates multiple source files into a single file.
      */
     concat: {
       /**
-       * The `build_css` target concatenates compiled CSS and vendor CSS
+       * The `compile_css` target concatenates compiled CSS and vendor CSS
        * together.
        */
-      build_css: {
+      compile_css: {
         src: [
           '<%= vendor_files.css %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
         ],
-        dest: '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
       },
       /**
        * The `compile_js` target is the concatenation of our application source
@@ -246,15 +269,6 @@ module.exports = function ( grunt ) {
       build: {
         files: {
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
-        }
-      },
-      compile: {
-        files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
-        },
-        options: {
-          cleancss: true,
-          compress: true
         }
       }
     },
@@ -368,11 +382,11 @@ module.exports = function ( grunt ) {
       build: {
         dir: '<%= build_dir %>',
         src: [
+          '<%= vendor_files.css %>',
           '<%= vendor_files.js %>',
           '<%= build_dir %>/src/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
-          '<%= vendor_files.css %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
       },
@@ -386,7 +400,6 @@ module.exports = function ( grunt ) {
         dir: '<%= compile_dir %>',
         src: [
           '<%= concat.compile_js.dest %>',
-          '<%= vendor_files.css %>',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
       }
@@ -498,7 +511,7 @@ module.exports = function ( grunt ) {
        */
       less: {
         files: [ 'src/**/*.less' ],
-        tasks: [ 'less:build' ]
+        tasks: [ 'less:build']
       },
 
       /**
@@ -540,8 +553,10 @@ module.exports = function ( grunt ) {
    * `delta`) and then add a new task called `watch` that does a clean build
    * before watching for changes.
    */
+
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', [ 'build', 'karma:unit', 'delta' ] );
+  grunt.registerTask( 'watch', ['build', 'karma:unit', 'delta']);
+
 
   /**
    * The default task is to build and compile.
@@ -552,9 +567,8 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build',
-    'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'index:build', 'karmaconfig',
+    'html2js', 'jshint', 'coffeelint', 'coffee', 'less:build', 'copy:build_app_assets', 'copy:build_vendor_assets',
+    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build', 'karmaconfig',
     'karma:continuous' 
   ]);
 
@@ -563,7 +577,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'less:compile', 'copy:compile_assets', 'ngAnnotate', 'concat:compile_js', 'uglify', 'index:compile'
+    'copy:compile_assets', 'ngAnnotate', 'concat:compile_css', 'cssmin', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
@@ -595,13 +609,10 @@ module.exports = function ( grunt ) {
     var jsFiles = filterForJS( this.filesSrc ).map( function ( file ) {
       return file.replace( dirRE, '' );
     });
-    cssFile = grunt.config('build_dir') +'/assets/'+ grunt.config('pkg.name') + '-' + grunt.config('pkg.version') +'.css';
-    cssFile = cssFile.replace(dirRE, '' );
 
-   // var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
-   //   return file.replace( dirRE, '' );
-   // });
-    var cssFiles = [cssFile];
+   var cssFiles = filterForCSS( this.filesSrc ).map( function ( file ) {
+     return file.replace( dirRE, '' );
+   });
 
     grunt.file.copy('src/index.html', this.data.dir + '/index.html', { 
       process: function ( contents, path ) {

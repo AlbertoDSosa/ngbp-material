@@ -2,7 +2,7 @@
 <html ng-app="ngMaterial-bp">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title ng-bind="pageTitle"></title>
 
     <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
@@ -26,10 +26,26 @@
   <div layout="row" flex>
         <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
           <img src="assets/img/angular-js.png" width="300">
-          <md-button>Home</md-button>
-          <md-button>What is it?</md-button>
-          <md-button>Documentation</md-button>
-          <md-button>Git Hub</md-button>
+          <md-button>
+            <md-icon class="material-icons">home</md-icon>
+            Home
+          </md-button>
+          <md-button>
+            <md-icon class="material-icons">info</md-icon>
+            What is it?
+          </md-button>
+          <md-button>
+            <md-icon class="material-icons">book</md-icon>
+            Documentation
+          </md-button>
+          <md-button>
+            <md-icon class="icon icon-github2"></md-icon>
+             GitHub
+          </md-button>
+          <md-button>
+            <md-icon class="material-icons">question_answer</md-icon>
+            Support
+          </md-button>
         </md-sidenav>
         <div layout="column" flex id="content" ui-view="main">
           

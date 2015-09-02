@@ -11,6 +11,7 @@ In one word: automation. The less work you have to do when performing repetitive
 - [grunt-contrib-concat](https://github.com/gruntjs/grunt-contrib-concat) - Concatenate files.
 - [grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) - Run predefined tasks whenever watched file patterns are added, changed or deleted.
 - [grunt-contrib-uglify](https://github.com/gruntjs/grunt-contrib-uglify) - Minify files with UglifyJS.
+- [grunt.contrib-cssmin](https://github.com/gruntjs/grunt-contrib-cssmin) - Minify css files.
 - [grunt-contrib-coffee](https://github.com/gruntjs/grunt-contrib-coffee) -	Compile CoffeeScript files to JavaScript.
 - [grunt-coffeelint](https://github.com/vojtajina/grunt-coffeelint) - Lint your CoffeeScript using grunt.js and coffeelint.
 - [grunt-ng-annotate](https://github.com/mzgol/grunt-ng-annotate) - Add, remove and rebuild angularjs dependency injection annotations.

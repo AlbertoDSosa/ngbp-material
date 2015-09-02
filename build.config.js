@@ -75,5 +75,5 @@ module.exports = {
     assets: [
       'vendor/material-design-icons/iconfont/*'
     ]
-  },
+  }
 };

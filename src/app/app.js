@@ -2,6 +2,7 @@ angular.module( 'ngMaterial-bp', [
   'templates-app',
   'templates-common',
   'ngMaterial-bp.home',
+  'ngMaterial-bp.about',
   'ui.router',
   'ngMaterial'
 ])
@@ -23,7 +24,5 @@ angular.module( 'ngMaterial-bp', [
   $scope.toggleSidenav = function(menuId) {
     $mdSidenav(menuId).toggle();
   };
-})
-
-;
+});
 
