@@ -29,7 +29,7 @@ ngMaterial-bp also comes prepackaged with the most popular design frameworks
 around: 
 [Angular UI](http://angular-ui.github.io),
 [Angular Material](https://github.com/angular/material),
-[Font Awesome](http://fortawesome.github.com/Font-Awesome), and
+[Material Icons](http://google.github.io/material-design-icons/), and
 [LESS](http://lesscss.org). Lastly, it contains a sophisticated
 [Grunt](http://gruntjs.org)-based build system to ensure maximum productivity.
 All you have to do is clone it and start coding!
