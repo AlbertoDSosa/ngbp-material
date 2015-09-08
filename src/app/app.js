@@ -7,8 +7,11 @@ angular.module( 'ngMaterial-bp', [
   'ngMaterial'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config( function myAppConfig ( $stateProvider, $urlRouterProvider, $mdThemingProvider) {
   $urlRouterProvider.otherwise( '/home' );
+        $mdThemingProvider.theme('default')
+            .primaryPalette('blue')
+            .accentPalette('green');
 })
 
 .run( function run () {
