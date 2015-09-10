@@ -13,6 +13,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-coffeelint');
@@ -59,6 +60,22 @@ module.exports = function ( grunt ) {
       options: {
         dest: 'CHANGELOG.md',
         template: 'changelog.tpl'
+      }
+    },
+
+    connect: {
+      build: {
+        options: {
+          port: 8000,
+          base: 'build'
+        }
+      },
+      bin_keep_alive: {
+        options: {
+          port: 8001,
+          base: 'bin',
+          keep_alive:true
+        }
       }
     },
 
@@ -555,7 +572,7 @@ module.exports = function ( grunt ) {
    */
 
   grunt.renameTask( 'watch', 'delta' );
-  grunt.registerTask( 'watch', ['build', 'karma:unit', 'delta']);
+  grunt.registerTask( 'watch', ['build', 'karma:unit', 'connect:build','delta']);
 
 
   /**
