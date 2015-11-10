@@ -129,8 +129,8 @@ module.exports = function ( grunt ) {
       build_vendor_assets: {
         files: [
           { 
-            src: [ '<%= vendor_files.assets %>' ],
-            dest: '<%= build_dir %>/assets/',
+            src: ['<%= vendor_files.assets %>'],
+            dest: '<%= build_dir %>/assets/material-icons',
             cwd: '.',
             expand: true,
             flatten: true
@@ -177,6 +177,7 @@ module.exports = function ( grunt ) {
           }
         ]
       }
+
     },
 
     /**
@@ -186,7 +187,7 @@ module.exports = function ( grunt ) {
     cssmin: {
       target: {
         files: {
-          '<%= concat.compile_css.dest %>': '<%= concat.compile_css.dest %>'
+          '<%= concat.build_css.dest %>': '<%= concat.build_css.dest %>'
         }
       }
     },
@@ -196,15 +197,15 @@ module.exports = function ( grunt ) {
      */
     concat: {
       /**
-       * The `compile_css` target concatenates compiled CSS and vendor CSS
+       * The `build_css` target concatenates compiled CSS and vendor CSS
        * together.
        */
-      compile_css: {
+      build_css: {
         src: [
           '<%= vendor_files.css %>',
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+          '<%= build_dir %>/assets/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ],
-        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+        dest: '<%= compile_dir %>/assets/css/<%= pkg.name %>-<%= pkg.version %>.css'
       },
       /**
        * The `compile_js` target is the concatenation of our application source
@@ -222,7 +223,7 @@ module.exports = function ( grunt ) {
           '<%= html2js.common.dest %>', 
           'module.suffix' 
         ],
-        dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
+        dest: '<%= compile_dir %>/assets/js/<%= pkg.name %>-<%= pkg.version %>.js'
       }
     },
 
@@ -285,7 +286,7 @@ module.exports = function ( grunt ) {
     less: {
       build: {
         files: {
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
+          '<%= build_dir %>/assets/css/<%= pkg.name %>-<%= pkg.version %>.css': '<%= app_files.less %>'
         }
       }
     },
@@ -384,6 +385,7 @@ module.exports = function ( grunt ) {
       }
     },
 
+
     /**
      * The `index` task compiles the `index.html` file as a Grunt template. CSS
      * and JS files co-exist here but they get split apart later.
@@ -404,7 +406,7 @@ module.exports = function ( grunt ) {
           '<%= build_dir %>/src/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+          '<%= build_dir %>/assets/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
       },
 
@@ -417,7 +419,7 @@ module.exports = function ( grunt ) {
         dir: '<%= compile_dir %>',
         src: [
           '<%= concat.compile_js.dest %>',
-          '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
+          '<%= build_dir %>/assets/css/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
       }
     },
@@ -594,7 +596,7 @@ module.exports = function ( grunt ) {
    * minifying your code.
    */
   grunt.registerTask( 'compile', [
-    'copy:compile_assets', 'ngAnnotate', 'concat:compile_css', 'cssmin', 'concat:compile_js', 'uglify', 'index:compile'
+    'copy:compile_assets', 'ngAnnotate', 'concat:build_css', 'cssmin', 'concat:compile_js', 'uglify', 'index:compile'
   ]);
 
   /**
