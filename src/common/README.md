@@ -15,9 +15,11 @@ handle components that do not meet this pattern.
 src/
   |- common/
   |  |- plusOne/
+  |  |- translate/
 ```
 
 - `plusOne` - a simple directive to load a Google +1 Button on an element.
+- `translate` - 
 
 Every component contained here should be drag-and-drop reusable in any other 
 project; they should depend on no other components that aren't similarly 

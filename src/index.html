@@ -21,28 +21,33 @@
         <md-icon aria-label="Menu" class="material-icons">menu</md-icon>
       </md-button>
       <h1 >Angular-Material Boilerplate</h1>
-      <a href="http://github.com/aitorcarrera/ngbp-material/blob/v<%= version %>-release/CHANGELOG.md">&nbsp;v<%= version %></a>
+      <a href="http://github.com/aitorcarrera/ngbp-material/blob/v<%= version %>-release/CHANGELOG.md" hide show-gt-sm flex>&nbsp;v<%= version %></a>
     </div>
+    <md-icon aria-label="Language" class="material-icons" hide show-gt-sm flex>language</md-icon>
+    <md-input-container class="u-center">
+      <md-select ng-model="selectedLang" ng-change="changeLanguage(selectedLang.name)" aria-label="langOpts" ng-model-options="{trackBy: '$value.id'}">
+        <md-option ng-value="opt" ng-repeat="opt in opts">{{ opt.name }}</md-option>
+      </md-select>
+    </md-input-container>
   </md-toolbar>
   <div layout="row" flex>
         <md-sidenav  class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
           <md-content layout="column">
             <img src="assets/img/angular-js.png" width="300" height="300">
             <md-button ui-sref="home">
-              <md-icon class="u-middle material-icons">home</md-icon> Home
+              <md-icon class="material-icons">home</md-icon> {{"Item_Menu_1" | translate}}
             </md-button>
             <md-button ui-sref="about">
-              <md-icon class="u-middle material-icons">info</md-icon> What is it?
+              <md-icon class="material-icons">info</md-icon> {{"Item_Menu_2" | translate}}
             </md-button>
             <md-button ng-href="https://github.com/aitorcarrera/ngbp-material#readme">
-              <md-icon class="u-middle material-icons">book</md-icon> Documentation
+              <md-icon class="material-icons">book</md-icon> {{"Item_Menu_3" | translate}}
             </md-button>
             <md-button ng-href="https://github.com/aitorcarrera/ngbp-material">
-              <md-icon class="u-middle icon icon-github2"></md-icon>
-               GitHub
+              <md-icon class="icon icon-github2"></md-icon> {{"Item_Menu_4" | translate}}
             </md-button>
             <md-button ng-href="https://github.com/aitorcarrera/ngbp-material/issues">
-              <md-icon class="u-middle material-icons">question_answer</md-icon> Support
+              <md-icon class="material-icons">question_answer</md-icon> {{"Item_Menu_5" | translate}}
             </md-button>
           </md-content>
         </md-sidenav>

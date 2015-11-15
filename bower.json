@@ -7,5 +7,9 @@
     "angular-ui-router": "~0.2.15",
     "angular-mocks": "~1.4.5",
     "angular-material": "~0.11.0"
+  },
+  "devDependencies": {
+    "angular-translate-loader-partial": "~2.8.1",
+    "angular-translate": "~2.8.1"
   }
 }

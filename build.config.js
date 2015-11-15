@@ -67,7 +67,9 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-animate/angular-animate.js',
       'vendor/angular-aria/angular-aria.js',
-      'vendor/angular-material/angular-material.js'
+      'vendor/angular-material/angular-material.js',
+      'vendor/angular-translate/angular-translate.js',
+      'vendor/angular-translate-loader-partial/angular-translate-loader-partial.js'
     ],
     css: [
       'vendor/angular-material/angular-material.css'
